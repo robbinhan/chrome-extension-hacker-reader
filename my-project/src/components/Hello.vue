@@ -74,6 +74,10 @@ span {
 }
 
 a {
+  text-decoration: none;
   color: #42b983;
+}
+a:visited {
+  color: #828282;
 }
 </style>
