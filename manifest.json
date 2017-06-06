@@ -1,0 +1,25 @@
+{
+    "manifest_version": 2,
+    "name": "hacker-reader",
+    "version": "1.0.0",
+    "description": "hacker-reader",
+    "icons": {
+        "16": "images/news.png",
+        "48": "images/news.png",
+        "128": "images/news.png"
+    },
+    "browser_action": {
+        "default_icon": {
+            "19": "images/news.png",
+            "38": "images/news.png"
+        },
+        "default_title": "hacker-reader",
+        "default_popup": "popup.html"
+    },
+    "permissions": [
+        "activeTab",
+        "https://hacker-news.firebaseio.com/",
+        "https://news.ycombinator.com/"
+    ],
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+}
