@@ -1,7 +1,11 @@
 <template>
   <div class="hello">
     <ul>
-      <li v-for="(story,index) in stories" >{{ index + 1 }}：<a v-bind:href="story.url">{{ story.title }}</a></li>
+      <li v-for="(story,index) in stories" >
+        {{ index + 1 }}：<a v-bind:href="story.url" target="_blank">{{ story.title }}</a>
+        <br/>
+        <span><timeago :since="story.time*1000" :auto-update="60"></timeago>  | <a :href="story.commentsUrl">{{ story.descendants }} comments</a></span>
+      </li>
     </ul>
   </div>
 </template>
@@ -28,9 +32,11 @@ export default {
       axios.all(requests)
       .then(result => result.map((story) => {
         const data = story.data;
+        data.commentsUrl = `https://news.ycombinator.com/item?id=${data.id}`;
         if (data.url === undefined) {
-          data.url = `https://news.ycombinator.com/item?id=${data.id}`;
+          data.url = data.commentsUrl;
         }
+        // console.log(data);
         return data;
       })
       .forEach(data => this.stories.push(data)),
@@ -59,7 +65,12 @@ ul {
 }
 
 li {
+  text-align: left;
   margin: 5px 5px;
+}
+
+span {
+  margin: auto auto auto 25px;
 }
 
 a {
