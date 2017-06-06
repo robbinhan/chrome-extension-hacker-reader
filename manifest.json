@@ -10,8 +10,8 @@
     },
     "browser_action": {
         "default_icon": {
-            "19": "images/news16.ico",
-            "38": "images/news16.ico"
+            "19": "images/news19.png",
+            "38": "images/news38.png"
         },
         "default_title": "hacker-reader",
         "default_popup": "popup.html"
