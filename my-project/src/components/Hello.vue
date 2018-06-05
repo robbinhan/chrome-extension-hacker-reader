@@ -18,10 +18,14 @@ export default {
   data() {
     return {
       stories: [],
+      updateTime: null,
     };
   },
 
   mounted() {
+    if (this.stories.length > 0) {
+      return;
+    }
     axios.get('https://hacker-news.firebaseio.com/v0/topstories.json')
     .then(response => response.data)
     .then((topstories) => {
@@ -39,7 +43,10 @@ export default {
         // console.log(data);
         return data;
       })
-      .forEach(data => this.stories.push(data)),
+      .forEach((data) => {
+        this.updateTime = new Date();
+        this.stories.push(data);
+      }),
      );
     });
   },
